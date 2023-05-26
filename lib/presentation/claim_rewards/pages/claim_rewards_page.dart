@@ -108,13 +108,13 @@ class _ClaimRewardsPageState extends State<ClaimRewardsPage>
                           1,
                         ),
                         alignment: FractionalOffset.center,
-                        child: Image.network(
-                          height: 300,
+                        child: Image.asset(
+                          "assets/images/party.jpg",
+                          height: 280,
                           width: MediaQuery.of(context).size.width,
                           cacheHeight: 300,
                           cacheWidth: MediaQuery.of(context).size.width.toInt(),
                           fit: BoxFit.fill,
-                          'https://www.bing.com/th?id=OHR.EuropeanHoneybee_EN-CA0674085037_UHD.jpg',
                         ),
                       ),
                     );
