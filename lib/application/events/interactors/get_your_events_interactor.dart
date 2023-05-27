@@ -21,14 +21,14 @@ final class GetYourEventsInteractor {
             city: "Ponta Grossa",
             state: "Paraná",
             title: "RKS Party",
-            going: true,
+            going: false,
           ),
           Event(
             date: DateTime.now(),
             city: "Ponta Grossa",
             state: "Paraná",
             title: "RKS Party",
-            going: true,
+            going: false,
           ),
           Event(
             date: DateTime.now(),

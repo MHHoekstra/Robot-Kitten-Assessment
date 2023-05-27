@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:robot_kitten_assessment/domain/claim_rewards/entities/claimable_event.dart';
 import 'package:robot_kitten_assessment/presentation/core/components/item_fader.dart';
+import 'package:robot_kitten_assessment/presentation/core/components/slow_zooming_image.dart';
 import 'package:robot_kitten_assessment/presentation/core/design_system/app_colors.dart';
 import 'package:robot_kitten_assessment/presentation/core/design_system/app_fonts.dart';
 import 'package:robot_kitten_assessment/presentation/core/navigation.dart';
@@ -20,31 +21,18 @@ class ClaimRewardsPage extends StatefulWidget {
   State<ClaimRewardsPage> createState() => _ClaimRewardsPageState();
 }
 
-class _ClaimRewardsPageState extends State<ClaimRewardsPage>
-    with SingleTickerProviderStateMixin {
+class _ClaimRewardsPageState extends State<ClaimRewardsPage> {
   late final List<GlobalKey<ItemFaderState>> keys;
-  final TransformationController _transformationController =
-      TransformationController();
-  late final AnimationController _animationController;
-  late final Animation<double> _animation;
 
   @override
   void initState() {
     keys = List.generate(8, (_) => GlobalKey<ItemFaderState>());
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 10));
-    _animation = Tween(begin: 1.0, end: 1.3).animate(_animationController);
+
     onInit();
   }
 
   void onInit() async {
-    _animationController.forward();
-    _animation.addListener(() {
-      if (_animation.isCompleted) {
-        _animationController.reverse();
-      }
-    });
     for (GlobalKey<ItemFaderState> key in keys) {
       await Future.delayed(const Duration(milliseconds: 100));
       key.currentState?.show();
@@ -97,29 +85,7 @@ class _ClaimRewardsPageState extends State<ClaimRewardsPage>
             Stack(
               alignment: Alignment.bottomCenter,
               children: [
-                AnimatedBuilder(
-                  animation: _animation,
-                  builder: (BuildContext context, Widget? child) {
-                    return ClipRect(
-                      child: Transform(
-                        transform: Matrix4.diagonal3Values(
-                          _animation.value,
-                          _animation.value,
-                          1,
-                        ),
-                        alignment: FractionalOffset.center,
-                        child: Image.asset(
-                          "assets/images/party.jpg",
-                          height: 280,
-                          width: MediaQuery.of(context).size.width,
-                          cacheHeight: 300,
-                          cacheWidth: MediaQuery.of(context).size.width.toInt(),
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                const SlowZoomingImage(),
                 Container(
                   color: AppColors.purple,
                   width: MediaQuery.of(context).size.width,
@@ -247,12 +213,5 @@ class _ClaimRewardsPageState extends State<ClaimRewardsPage>
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _transformationController.dispose();
-    _animationController.dispose();
-    super.dispose();
   }
 }

@@ -13,7 +13,7 @@ final class GetHappeningNowInteractor {
             date: DateTime.now(),
             city: "Ponta Grossa",
             state: "Paraná",
-            title: "RKS Party",
+            title: "Rainbow Kitten Surprise Party",
             going: false,
           ),
         ],

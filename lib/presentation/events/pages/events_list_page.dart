@@ -6,9 +6,7 @@ import 'package:robot_kitten_assessment/presentation/core/components/item_fader.
 
 import '../../core/design_system/app_colors.dart';
 import '../blocs/events_list_page_bloc.dart';
-import '../components/happening_now_list.dart';
-import '../components/this_month_list.dart';
-import '../components/this_week_list.dart';
+import '../components/events_list.dart';
 import '../components/your_events_list.dart';
 
 class EventsListPage extends StatefulWidget {
@@ -87,19 +85,42 @@ class _EventsListPageState extends State<EventsListPage> {
                 children: [
                   if (state.yourEvents.isNotEmpty)
                     YourEventsList(
-                        events: state.yourEvents,
-                        showDurationBaseline: _baselineShowDuration,
-                        onCardTap: (Event event) {
-                          _bloc.add(EventsListEventTapped(event));
-                        }),
+                      events: state.yourEvents,
+                      showDurationBaseline: _baselineShowDuration,
+                      onCardTap: (Event event) {
+                        _bloc.add(EventsListEventTapped(event));
+                      },
+                    ),
                   if (state.happeningNow.isNotEmpty)
-                    HappeningNowList(
+                    EventsList(
                       events: state.happeningNow,
+                      title: "Happening now",
                       showDurationBaseline: _baselineShowDuration,
                       showOrder: 2,
+                      onCardTap: (Event event) {
+                        _bloc.add(EventsListEventTapped(event));
+                      },
                     ),
-                  ThisWeekList(),
-                  ThisMonthList(),
+                  if (state.happeningNow.isNotEmpty)
+                    EventsList(
+                      events: state.happeningNow,
+                      title: "This week",
+                      showDurationBaseline: _baselineShowDuration,
+                      showOrder: 3,
+                      onCardTap: (Event event) {
+                        _bloc.add(EventsListEventTapped(event));
+                      },
+                    ),
+                  if (state.happeningNow.isNotEmpty)
+                    EventsList(
+                      events: state.happeningNow,
+                      title: "This month",
+                      showDurationBaseline: _baselineShowDuration,
+                      showOrder: 4,
+                      onCardTap: (Event event) {
+                        _bloc.add(EventsListEventTapped(event));
+                      },
+                    ),
                 ],
               ),
             ),

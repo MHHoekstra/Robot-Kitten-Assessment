@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:robot_kitten_assessment/domain/events/entities/event.dart';
 import 'package:robot_kitten_assessment/presentation/core/components/item_fader.dart';
-import 'package:robot_kitten_assessment/presentation/core/design_system/app_colors.dart';
 import 'package:robot_kitten_assessment/presentation/core/design_system/app_fonts.dart';
+import 'package:robot_kitten_assessment/presentation/events/components/event_card.dart';
 
-class HappeningNowList extends StatefulWidget {
+class EventsList extends StatefulWidget {
   final List<Event> events;
   final Duration showDurationBaseline;
   final int showOrder;
-  const HappeningNowList({
+  final String title;
+  final Function(Event) onCardTap;
+  const EventsList({
     super.key,
     required this.events,
     required this.showDurationBaseline,
     this.showOrder = 1,
+    required this.title,
+    required this.onCardTap,
   });
 
   @override
-  State<HappeningNowList> createState() => _HappeningNowListState();
+  State<EventsList> createState() => _EventsListState();
 }
 
-class _HappeningNowListState extends State<HappeningNowList> {
+class _EventsListState extends State<EventsList> {
   late final List<GlobalKey<ItemFaderState>> _keys;
 
   @override
@@ -50,10 +54,10 @@ class _HappeningNowListState extends State<HappeningNowList> {
           key: _keys[0],
           translateOnHide: false,
           translateOnShow: false,
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Text(
-              "Happening Now",
+              widget.title,
               style: AppFonts.h3,
             ),
           ),
@@ -65,9 +69,9 @@ class _HappeningNowListState extends State<HappeningNowList> {
             fromRight: true,
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 200,
-                color: AppColors.purple,
+              child: EventCard(
+                event: widget.events[index],
+                onTap: widget.onCardTap,
               ),
             ),
           ),
