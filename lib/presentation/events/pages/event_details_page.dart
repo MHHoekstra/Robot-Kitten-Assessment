@@ -63,7 +63,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                     IconButton(
                       onPressed: () async {
                         final url = Uri.parse(
-                            "https://wa.me/554299592911/?text=Congrats");
+                            "https://wa.me/554299592911/?text=Check this out ${widget.details.title}");
                         if (await canLaunchUrl(url)) {
                           launchUrl(url);
                         }
@@ -78,25 +78,51 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 ),
               ),
             ),
-            const SlowZoomingImage(),
-            ItemFader(
-              key: _keys[1],
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(widget.details.title, style: AppFonts.h2),
-              ),
-            ),
-            ItemFader(
-              key: _keys[2],
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  widget.details.description,
-                  style: AppFonts.bodyNormal,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SlowZoomingImage(),
+                    ItemFader(
+                      key: _keys[1],
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(widget.details.title, style: AppFonts.h2),
+                      ),
+                    ),
+                    ItemFader(
+                      key: _keys[2],
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Text(
+                          widget.details.description,
+                          style: AppFonts.bodyNormal,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    ItemFader(
+                      key: _keys[3],
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: DetailsDateTile(),
+                      ),
+                    ),
+                    ItemFader(
+                      key: _keys[4],
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: DetailsLocationTile(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            const Spacer(),
             GoingButton(
               initialValue: widget.details.going,
               onTap: (value) {},
@@ -104,6 +130,84 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class DetailsLocationTile extends StatelessWidget {
+  const DetailsLocationTile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(
+          Icons.location_on_outlined,
+          color: AppColors.white,
+        ),
+        SizedBox(
+          width: 8,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "NDSM Docklands",
+              style: AppFonts.bodyLarge,
+            ),
+            Text(
+              "T.T. Neveritaweg 15",
+              style: AppFonts.bodyNormal,
+            ),
+            Text(
+              "1033 RG Amsterdam",
+              style: AppFonts.bodyNormal,
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
+class DetailsDateTile extends StatelessWidget {
+  const DetailsDateTile({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Icon(
+          Icons.calendar_today_outlined,
+          color: AppColors.white,
+        ),
+        SizedBox(
+          width: 8,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Thu, September 08",
+              style: AppFonts.bodyLarge,
+            ),
+            Text(
+              "6:30 PM - 3:00 AM",
+              style: AppFonts.bodyNormal,
+            ),
+          ],
+        )
+      ],
     );
   }
 }

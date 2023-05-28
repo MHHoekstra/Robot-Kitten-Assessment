@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:robot_kitten_assessment/domain/events/entities/event.dart';
 import 'package:robot_kitten_assessment/presentation/core/components/item_fader.dart';
+import 'package:robot_kitten_assessment/presentation/core/design_system/app_fonts.dart';
 
 import '../../core/design_system/app_colors.dart';
 import '../blocs/events_list_page_bloc.dart';
@@ -26,7 +27,7 @@ class _EventsListPageState extends State<EventsListPage> {
 
   @override
   void initState() {
-    _faderKeys = List.generate(1, (_) => GlobalKey<ItemFaderState>());
+    _faderKeys = List.generate(2, (_) => GlobalKey<ItemFaderState>());
     _bloc = GetIt.I();
     super.initState();
     _onInit();
@@ -83,6 +84,33 @@ class _EventsListPageState extends State<EventsListPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  ItemFader(
+                    key: _faderKeys[1],
+                    translateOnShow: false,
+                    translateOnHide: false,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 4),
+                      child: TextField(
+                        autofocus: false,
+                        style: AppFonts.bodyNormal,
+                        cursorColor: AppColors.white,
+                        decoration: InputDecoration(
+                          hintText: "Search upcoming events",
+                          hintStyle: AppFonts.bodyNormal
+                              .copyWith(color: Colors.white24),
+                          border: InputBorder.none,
+                          filled: true,
+                          fillColor: AppColors.emperor,
+                          focusColor: AppColors.white,
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: AppColors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   if (state.yourEvents.isNotEmpty)
                     YourEventsList(
                       events: state.yourEvents,

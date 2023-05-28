@@ -72,17 +72,17 @@ class _GoingCardButtonState extends State<GoingCardButton>
                     children: [
                       Transform.scale(
                         scale: _animation.value,
-                        child: const Icon(
-                          Icons.check_circle_outline,
-                          color: AppColors.black,
-                          size: 14,
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 4),
+                          child: Icon(
+                            Icons.check_circle_outline,
+                            color: AppColors.black,
+                            size: 14,
+                          ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 4,
-                      ),
                       Transform.translate(
-                        offset: Offset((1 - _animation.value) * -8, 0),
+                        offset: Offset((1 - _animation.value) * -9, 0),
                         child: Text(
                           "Going",
                           style: AppFonts.h4.copyWith(

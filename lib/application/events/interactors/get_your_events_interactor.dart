@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_lorem/flutter_lorem.dart';
+import 'package:robot_kitten_assessment/domain/core/entities/crew.dart';
 import 'package:robot_kitten_assessment/domain/core/entities/failure.dart';
 import 'package:robot_kitten_assessment/domain/events/entities/event.dart';
 
@@ -15,20 +17,14 @@ final class GetYourEventsInteractor {
             state: "Paraná",
             title: "Rainbow Kitten Surprise Party",
             going: true,
-          ),
-          Event(
-            date: DateTime.now(),
-            city: "Ponta Grossa",
-            state: "Paraná",
-            title: "RKS Party",
-            going: false,
-          ),
-          Event(
-            date: DateTime.now(),
-            city: "Ponta Grossa",
-            state: "Paraná",
-            title: "RKS Party",
-            going: false,
+            squad: [
+              Crew(
+                name: lorem(
+                  paragraphs: 1,
+                  words: 1,
+                ),
+              ),
+            ],
           ),
           Event(
             date: DateTime.now(),
@@ -36,6 +32,44 @@ final class GetYourEventsInteractor {
             state: "Paraná",
             title: "RKS Party",
             going: true,
+            squad: [
+              Crew(
+                name: lorem(
+                  paragraphs: 1,
+                  words: 1,
+                ),
+              ),
+            ],
+          ),
+          Event(
+            date: DateTime.now(),
+            city: "Ponta Grossa",
+            state: "Paraná",
+            title: "RKS Party",
+            going: true,
+            squad: [
+              Crew(
+                name: lorem(
+                  paragraphs: 1,
+                  words: 1,
+                ),
+              ),
+            ],
+          ),
+          Event(
+            date: DateTime.now(),
+            city: "Ponta Grossa",
+            state: "Paraná",
+            title: "RKS Party",
+            going: true,
+            squad: [
+              Crew(
+                name: lorem(
+                  paragraphs: 1,
+                  words: 1,
+                ),
+              ),
+            ],
           ),
         ],
       ),

@@ -89,7 +89,7 @@ class _GoingButtonState extends State<GoingButton>
                   Transform.scale(
                     scale: _animation.value,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(right: 8),
                       child: Icon(
                         Icons.check_circle_outline,
                         color: _textColor.evaluate(_animation),
@@ -98,7 +98,7 @@ class _GoingButtonState extends State<GoingButton>
                     ),
                   ),
                   Transform.translate(
-                    offset: Offset((1 - _animation.value) * -8, 0),
+                    offset: Offset((1 - _animation.value) * -16, 0),
                     child: Text(
                       "GOING",
                       style: AppFonts.button.copyWith(

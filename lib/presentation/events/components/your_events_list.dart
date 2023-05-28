@@ -69,7 +69,7 @@ class _YourEventsListState extends State<YourEventsList> {
           ),
         ),
         SizedBox(
-          height: 115 + 32,
+          height: 140 + 32,
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: widget.events.length,
