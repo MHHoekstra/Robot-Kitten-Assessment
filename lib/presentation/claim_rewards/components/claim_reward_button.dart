@@ -74,6 +74,12 @@ class _ClaimRewardButtonState extends State<ClaimRewardButton>
   );
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTapDown: (_) {

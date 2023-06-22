@@ -38,6 +38,11 @@ class _GoingCardButtonState extends State<GoingCardButton>
       _animationController.forward();
     }
   }
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
