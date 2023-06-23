@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:robot_kitten_assessment/domain/events/entities/event.dart';
 import 'package:robot_kitten_assessment/presentation/core/design_system/app_colors.dart';
@@ -41,9 +42,11 @@ class EventCard extends StatelessWidget {
                               "${event.date.day}/${event.date.month}/${event.date.year}, ${event.date.hour}:${event.date.minute}",
                               style: AppFonts.h4,
                             ),
-                            Text(
-                              event.title,
-                              style: AppFonts.h2,
+                            Flexible(
+                              child: AutoSizeText(
+                                event.title,
+                                style: AppFonts.h2,
+                              ),
                             ),
                           ],
                         ),

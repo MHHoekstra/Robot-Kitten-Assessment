@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:robot_kitten_assessment/domain/claim_rewards/entities/claimable_event.dart';
 import 'package:robot_kitten_assessment/presentation/core/components/item_fader.dart';
@@ -122,7 +123,7 @@ class _ClaimRewardsPageState extends State<ClaimRewardsPage> {
                     child: ItemFader(
                       key: keys[3],
                       translateOnHide: false,
-                      child: Text(
+                      child: AutoSizeText(
                         widget.event.title,
                         style: AppFonts.h1,
                       ),
@@ -167,28 +168,30 @@ class _ClaimRewardsPageState extends State<ClaimRewardsPage> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 4,
-                horizontal: 8,
-              ),
-              child: ItemFader(
-                key: keys[5],
-                translateOnHide: false,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        widget.event.description,
-                        style: AppFonts.bodyLarge,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 4,
+                  horizontal: 8,
+                ),
+                child: ItemFader(
+                  key: keys[5],
+                  translateOnHide: false,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Flexible(
+                        child: AutoSizeText(
+                          widget.event.description,
+                          style: AppFonts.bodyLarge,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-            const Spacer(),
             ItemFader(
               key: keys[6],
               translateOnHide: false,
